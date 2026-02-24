@@ -88,7 +88,7 @@ with col1:
     if st.button("", use_container_width=True, key="7", shortcut="7"): handle_digit('7')
     if st.button("", use_container_width=True, key="4", shortcut="4"): handle_digit('4')
     if st.button("", use_container_width=True, key="1", shortcut="1"): handle_digit('1')
-    if st.button("Clear", use_container_width=True, key="C", shortcut="backspace"): clear_all()
+    if st.button("C", use_container_width=True, key="C", shortcut="backspace"): clear_all()
 
 
 with col2:
