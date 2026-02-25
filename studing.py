@@ -1,28 +1,38 @@
 import streamlit as st
-import time
+import numpy as np
+import pandas as pd
+from time import time
 
-st.title('st.progress')
+st.title('st.cache')
 
-with st.expander('About this app'):
-     st.write('You can now display the progress of your calculations in a Streamlit app with the `st.progress` command.')
+# Using cache
+a0 = time()
+st.subheader('Using st.cache_data')
 
-st.subheader("Пример: обработка списка задач")
+@st.cache_data
+def load_data_a():
+  df = pd.DataFrame(
+    np.random.rand(2000000, 5),
+    columns=['a', 'b', 'c', 'd', 'e']
+  )
+  return df
 
-# Список задач для выполнения
-tasks = ['Загрузка данных', 'Обработка данных', 'Обучение модели', 'Оценка результатов', 'Сохранение отчета']
-total_tasks = len(tasks)
+st.write(load_data_a())
+a1 = time()
+st.info(a1-a0)
 
-# Создаем прогресс-бар и текстовый элемент для статуса
-progress_text = "Операция запускается. Пожалуйста, подождите."
-my_bar = st.progress(0, text=progress_text)
 
-for i, task in enumerate(tasks):
-    # Имитируем работу
-    time.sleep(0.7)
-    
-    # Обновляем прогресс-бар и текст
-    progress_text = f"Шаг {i+1}/{total_tasks}: {task}..."
-    my_bar.progress((i + 1) / total_tasks, text=progress_text)
+# Not using cache
+b0 = time()
+st.subheader('Not using st.cache')
 
-st.success("Все задачи успешно выполнены!")
-st.balloons()
+def load_data_b():
+  df = pd.DataFrame(
+    np.random.rand(2000000, 5),
+    columns=['a', 'b', 'c', 'd', 'e']
+  )
+  return df
+
+st.write(load_data_b())
+b1 = time()
+st.info(b1-b0)
