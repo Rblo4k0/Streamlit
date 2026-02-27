@@ -9,7 +9,7 @@ with st.expander('About this app'):
 # Image settings
 st.sidebar.header('Settings')
 img_dict = {'Max': 'maxresdefault', 'High': 'hqdefault', 'Medium': 'mqdefault', 'Standard': 'sddefault'}
-<<<<<<< HEAD
+
 selected_img_quality = st.sidebar.selectbox('Select image quality', ['Max', 'lkllljjljkl', 'High', 'Medium', 'Standard'])
 
 img_quality = img_dict[selected_img_quality]
